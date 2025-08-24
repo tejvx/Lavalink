@@ -3,7 +3,7 @@ server:
 
 lavalink:
   server:
-    password: "https://dsc.gg/tejv"
+    password: "tejvfr"
     sources:
       youtube: true
       bandcamp: true
