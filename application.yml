@@ -1,5 +1,5 @@
 server:
-  port: 2333
+  port: ${PORT}
 
 lavalink:
   server:
