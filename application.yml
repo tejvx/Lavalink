@@ -19,11 +19,11 @@ lavalink:
   plugins:
     - dependency: "com.github.TopiSenpai.LavaSrc:lavasrc-plugin:4.2.0"
       repository: "https://jitpack.io"
-    - dependency: "com.github.lavalink-devs:youtube-source:1.7.2"
+    - dependency: "com.github.lavalink-devs:youtube-source:1.7.2"  
       repository: "https://maven.lavalink.dev/releases"
 
   server:
-    password: "${LAVALINK_PASSWORD:tejvfr}"
+    password: "${LAVALINK_PASSWORD:jmlitelavalink}"
     sources:
       # Core sources
       youtube: true
@@ -31,21 +31,14 @@ lavalink:
       soundcloud: true
       twitch: true
       vimeo: true
-      mixer: true
+      mixer: false
       http: true
       local: false
-      
-      # Extended sources (via plugins)
-      spotify: true
-      applemusic: true
-      deezer: true
-      yandexmusic: true
-      flowery-tts: false
       
     # Buffer and connection settings
     bufferDurationMs: 400
     frameBufferDurationMs: 5000
-    youtubePlaylistLoadLimit: 100
+    youtubePlaylistLoadLimit: 50
     playerUpdateInterval: 5
     youtubeSearchEnabled: true
     soundcloudSearchEnabled: true
@@ -99,21 +92,13 @@ plugins:
     spotify:
       clientId: "${SPOTIFY_CLIENT_ID:}"
       clientSecret: "${SPOTIFY_CLIENT_SECRET:}"
-      spDc: "${SPOTIFY_SP_DC:}"
       countryCode: "US"
     applemusic:
       countryCode: "US"
-      mediaAPIToken: "${APPLE_MUSIC_API_TOKEN:}"
     deezer:
       masterDecryptionKey: "${DEEZER_MASTER_KEY:}"
     yandexmusic:
       accessToken: "${YANDEX_ACCESS_TOKEN:}"
-    flowerytts:
-      voice: "default"
-      translate: false
-      silence: 0
-      speed: 1.0
-      audioFormat: "mp3"
     
   # YouTube Plugin Configuration  
   youtube:
@@ -124,18 +109,8 @@ plugins:
     clients:
       - MUSIC
       - WEB
-      - ANDROID
-      - TVHTML5EMBEDDED
-
-  # Metrics Plugin Configuration
-  metrics:
-    prometheus:
-      enabled: false
-      endpoint: /metrics
-
-  # Session Plugin Configuration  
-  session:
-    timeout: 60000
+      - ANDROID_TESTSUITE
+      - IOS
 
 # Server management
 management:
