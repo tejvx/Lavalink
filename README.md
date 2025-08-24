@@ -8,7 +8,5 @@
 ./Dockerfile
 ```
 
-Support:
-
-
--> https://discord.gg/PYfeSaDGPJ <-
+# Support:
+**->** __https://discord.gg/PYfeSaDGPJ__ **<-**
