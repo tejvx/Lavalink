@@ -1,0 +1,153 @@
+server:
+  port: ${PORT:2333}
+  address: 0.0.0.0
+
+spring:
+  main:
+    banner-mode: log
+  application:
+    name: Lavalink
+
+logging:
+  file:
+    path: ./logs/
+  level:
+    root: INFO
+    lavalink: INFO
+
+lavalink:
+  plugins:
+    - dependency: "com.github.TopiSenpai.LavaSrc:lavasrc-plugin:4.2.0"
+      repository: "https://jitpack.io"
+    - dependency: "com.github.lavalink-devs:youtube-source:1.7.2"
+      repository: "https://maven.lavalink.dev/releases"
+
+  server:
+    password: "${LAVALINK_PASSWORD:tejvfr}"
+    sources:
+      # Core sources
+      youtube: true
+      bandcamp: true
+      soundcloud: true
+      twitch: true
+      vimeo: true
+      mixer: true
+      http: true
+      local: false
+      
+      # Extended sources (via plugins)
+      spotify: true
+      applemusic: true
+      deezer: true
+      yandexmusic: true
+      flowery-tts: false
+      
+    # Buffer and connection settings
+    bufferDurationMs: 400
+    frameBufferDurationMs: 5000
+    youtubePlaylistLoadLimit: 100
+    playerUpdateInterval: 5
+    youtubeSearchEnabled: true
+    soundcloudSearchEnabled: true
+    gc-warnings: true
+
+    # Rate limiting
+    ratelimit:
+      ipBlocks: []
+      excludedIps: []
+      strategy: "RotateOnBan"
+      searchTriggersFail: true
+      retryLimit: -1
+
+    # YouTube configuration
+    youtubeConfig:
+      email: ""
+      password: ""
+
+    # HTTP configuration  
+    httpConfig:
+      proxyHost: ""
+      proxyPort: 3128
+      proxyUser: ""
+      proxyPassword: ""
+
+  # Filters configuration
+  filters:
+    volume: true
+    equalizer: true
+    karaoke: true
+    timescale: true
+    tremolo: true
+    vibrato: true
+    distortion: true
+    rotation: true
+    lowpass: true
+
+plugins:
+  # LavaSrc Plugin Configuration
+  lavasrc:
+    providers:
+      - "ytsearch:\"%ISRC%\""
+      - "ytsearch:%QUERY%"
+    sources:
+      spotify: true
+      applemusic: true
+      deezer: true
+      yandexmusic: true
+      flowerytts: false
+      youtube: true
+    spotify:
+      clientId: "${SPOTIFY_CLIENT_ID:}"
+      clientSecret: "${SPOTIFY_CLIENT_SECRET:}"
+      spDc: "${SPOTIFY_SP_DC:}"
+      countryCode: "US"
+    applemusic:
+      countryCode: "US"
+      mediaAPIToken: "${APPLE_MUSIC_API_TOKEN:}"
+    deezer:
+      masterDecryptionKey: "${DEEZER_MASTER_KEY:}"
+    yandexmusic:
+      accessToken: "${YANDEX_ACCESS_TOKEN:}"
+    flowerytts:
+      voice: "default"
+      translate: false
+      silence: 0
+      speed: 1.0
+      audioFormat: "mp3"
+    
+  # YouTube Plugin Configuration  
+  youtube:
+    enabled: true
+    allowSearch: true
+    allowDirectVideoIds: true
+    allowDirectPlaylistIds: true
+    clients:
+      - MUSIC
+      - WEB
+      - ANDROID
+      - TVHTML5EMBEDDED
+
+  # Metrics Plugin Configuration
+  metrics:
+    prometheus:
+      enabled: false
+      endpoint: /metrics
+
+  # Session Plugin Configuration  
+  session:
+    timeout: 60000
+
+# Server management
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,info"
+  endpoint:
+    health:
+      show-details: always
+
+# Sentry configuration (optional error tracking)
+sentry:
+  dsn: "${SENTRY_DSN:}"
+  environment: "production"
