@@ -1,2 +1,7 @@
 # Installion
-```./DockerFile```
+```
+./Dockerfile
+```
+
+# Support
+-> **https://discord.gg/PYfeSaDGPJ**
